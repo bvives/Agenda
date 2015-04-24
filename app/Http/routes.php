@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'CitasController@index');
 
 Route::get('home', 'HomeController@index');
 
@@ -19,3 +19,13 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::bind('contactes', function($value, $route) {
+	return App\Contacte::whereSlug($value)->first();
+});
+Route::bind('citas', function($value, $route) {
+	return App\Cita::whereSlug($value)->first();
+});
+
+Route::resource('citas', 'CitasController');
+Route::resource('contactes', 'ContactesController');
