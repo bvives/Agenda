@@ -18,6 +18,7 @@ class CreateContactesTable extends Migration {
                         $table->string('nom');
                         $table->string('email');
                         $table->string('tlf');
+                        $table->string('slug')->unique();
 			$table->timestamps();
 		});
                 Schema::create('cita_contacte', function(Blueprint $table)
