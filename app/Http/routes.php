@@ -20,6 +20,9 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+Route::model('contactes', 'Contacte');
+Route::model('citas', 'Cita');
+
 Route::bind('contactes', function($value, $route) {
 	return App\Contacte::whereSlug($value)->first();
 });
