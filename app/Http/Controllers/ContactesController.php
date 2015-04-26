@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Cita;
+use App\Contacte;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,8 @@ class ContactesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$contactes = Contacte::all();
+                return view('contactes.index', compact('contactes'));
 	}
 
 	/**
@@ -43,9 +46,9 @@ class ContactesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Contacte $contacte)
 	{
-		//
+		return view('contactes.show', compact('contacte'));
 	}
 
 	/**

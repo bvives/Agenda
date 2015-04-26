@@ -62,7 +62,7 @@ class CitasController extends Controller {
 		//
 	}
 
-	/**
+        /**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
@@ -83,5 +83,15 @@ class CitasController extends Controller {
 	{
 		//
 	}
+        /**
+         * 
+         * 
+         * @param type $param
+         * 
+         * @return Response
+         */
+        public function prova($param) {
+            //
+        }
 
 }
