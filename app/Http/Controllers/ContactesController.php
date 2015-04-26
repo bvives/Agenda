@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use Input;
+use Redirect;
 use App\Cita;
 use App\Contacte;
 use App\Http\Requests;

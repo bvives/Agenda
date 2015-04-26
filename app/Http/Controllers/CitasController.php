@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use Input;
+use Redirect;
 use App\Contacte;
 use App\Cita;
 use App\Http\Requests;
@@ -27,7 +29,7 @@ class CitasController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('citas.create');
 	}
 
 	/**
@@ -37,7 +39,12 @@ class CitasController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		//$this->validate($request, $this->rules);
+        
+                $input = Input::all();
+                $input['slug'] = str_replace(" ", "-", (strtolower($input['titol'])));
+                Cita::create($input);
+                return Redirect::route('citas.index')->with('message', 'poblacio creada');
 	}
 
 	/**
@@ -54,12 +61,12 @@ class CitasController extends Controller {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Cita  $cita
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Cita $cita)
 	{
-		//
+		return view('citas.edit', compact('cita'));
 	}
 
         /**
@@ -68,9 +75,14 @@ class CitasController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Cita $cita)
 	{
-		//
+		//$this->validate($request, $this->rules);
+        
+                $input = array_except(Input::all(), '_method');
+                $input['slug'] = str_replace(" ", "-", (strtolower($input['titol'])));
+                $cita->update($input);
+                return Redirect::route('citas.index')->with('message', 'poblacio editada');
 	}
 
 	/**
@@ -79,9 +91,10 @@ class CitasController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Cita $cita)
 	{
-		//
+		$cita->delete();
+                return Redirect::route('citas.index')->with('message', 'cita deleted.');
 	}
         /**
          * 
@@ -90,8 +103,4 @@ class CitasController extends Controller {
          * 
          * @return Response
          */
-        public function prova($param) {
-            //
-        }
-
 }
