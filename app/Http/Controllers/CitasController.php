@@ -31,6 +31,18 @@ class CitasController extends Controller {
 	{
 		return view('citas.create');
 	}
+        
+        /**
+         * Show the for for attach Contacte to Cita
+         * 
+         * @param Cita $cita
+         * @return Response
+         */
+	public function addContactes(Cita $cita)
+	{
+                $contactes = Contacte::all();
+		return view('citas.addContacte', compact ('cita','contactes'));
+	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -44,13 +56,13 @@ class CitasController extends Controller {
                 $input = Input::all();
                 $input['slug'] = str_replace(" ", "-", (strtolower($input['titol'])));
                 Cita::create($input);
-                return Redirect::route('citas.index')->with('message', 'poblacio creada');
+                return Redirect::route('citas.index')->with('message', 'Cita creada');
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Cita  $cita
 	 * @return Response
 	 */
 	public function show(Cita $cita)

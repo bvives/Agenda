@@ -8,7 +8,7 @@
             <td>{{$cita->dataCita}}</td>
         </tr>
         <tr>
-            <td>Descripció:</td>
+            <td>Descripcio:</td>
             <td>{{$cita->descripcio}}</td>
         </tr>
         <tr>
@@ -25,5 +25,6 @@
             <li><a href="{{ route('contactes.show', [$contacte->slug]) }}">{{ $contacte->nom }}</a>
         @endforeach
         </ul>
+        {!! link_to_route('citas.addContactes', 'Edit', array($cita->slug), array('class' => 'btn btn-info')) !!}
     @endif
 @endsection

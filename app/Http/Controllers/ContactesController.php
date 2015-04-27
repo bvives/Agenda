@@ -29,7 +29,7 @@ class ContactesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('contactes.create');
 	}
 
 	/**
@@ -39,7 +39,12 @@ class ContactesController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		//$this->validate($request, $this->rules);
+        
+                $input = Input::all();
+                $input['slug'] = str_replace(" ", "-", (strtolower($input['nom'])));
+                Contacte::create($input);
+                return Redirect::route('contactes.index')->with('message', 'Contacte creat');
 	}
 
 	/**
@@ -59,9 +64,9 @@ class ContactesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Contacte $contacte)
 	{
-		//
+		return view('contactes.edit', compact('contacte'));
 	}
 
 	/**
@@ -70,9 +75,14 @@ class ContactesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Contacte $contacte)
 	{
-		//
+		//$this->validate($request, $this->rules);
+        
+                $input = array_except(Input::all(), '_method');
+                $input['slug'] = str_replace(" ", "-", (strtolower($input['nom'])));
+                $contacte->update($input);
+                return Redirect::route('contactes.index')->with('message', 'contacte editat');
 	}
 
 	/**
@@ -81,9 +91,10 @@ class ContactesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Contacte $contacte)
 	{
-		//
+		$contacte->delete();
+                return Redirect::route('contactes.index')->with('message', 'contacte deleted.');
 	}
 
 }

@@ -23,6 +23,8 @@ Route::controllers([
 Route::model('contactes', 'Contacte');
 Route::model('citas', 'Cita');
 
+Route::post('citas/{citas}/addContactes', 'CitasController@addContactes($cita');
+
 Route::bind('contactes', function($value, $route) {
 	return App\Contacte::whereSlug($value)->first();
 });
@@ -32,3 +34,4 @@ Route::bind('citas', function($value, $route) {
 
 Route::resource('citas', 'CitasController');
 Route::resource('contactes', 'ContactesController');
+
