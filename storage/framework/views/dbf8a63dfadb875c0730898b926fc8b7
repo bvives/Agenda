@@ -1,8 +1,5 @@
 <?php $__env->startSection('content'); ?>
-    <h2>Afegir Contacte</h2>
-    <?php echo e($cita->id); ?>
-
-    <?php echo e($cita->titol); ?>
+    <h2>Afegir contactes a <?php echo e($cita->titol); ?></h2>
 
 <?php echo Form::open(['route' => ['citas.sync', $cita->slug]]); ?>
 
