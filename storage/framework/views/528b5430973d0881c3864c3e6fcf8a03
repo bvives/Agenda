@@ -1,0 +1,28 @@
+<div class="form-group">
+    <?php echo Form::label('titol', 'Titol:'); ?>
+
+    <?php echo Form::text('titol'); ?>
+
+</div>
+<div class="form-group">
+    <?php echo Form::label('dataCita', 'Data:'); ?>
+
+    <?php echo Form::date('dataCita'); ?>
+
+</div>
+<div class="form-group">
+    <?php echo Form::label('descripcio', 'Descripcio:'); ?>
+
+    <?php echo Form::text('descripcio'); ?>
+
+</div>
+<div class="form-group">
+    <?php echo Form::label('lloc', 'Lloc:'); ?>
+
+    <?php echo Form::text('lloc'); ?>
+
+</div>
+<div class="form-group">
+    <?php echo Form::submit($submit_text, ['class'=>'btn primary']); ?>
+
+</div>

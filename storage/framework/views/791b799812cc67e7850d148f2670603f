@@ -1,0 +1,31 @@
+ 
+<?php $__env->startSection('content'); ?>
+    <h2>Citas</h2>
+ 
+    <?php if( !$citas->count() ): ?>
+        You have no poblacions
+    <?php else: ?>
+        <ul>
+            <?php foreach( $citas as $cita ): ?>
+                <li>
+                    <?php echo Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('citas.destroy', $cita->slug))); ?>
+
+                        <a href="<?php echo e(route('citas.show', $cita->slug)); ?>"><?php echo e($cita->titol); ?></a>
+                         (
+                            <?php echo link_to_route('citas.edit', 'Edit', array($cita->slug), array('class' => 'btn btn-info')); ?>,
+                            <?php echo Form::submit('Delete', array('class' => 'btn btn-danger')); ?>
+
+                        )
+                    <?php echo Form::close(); ?>
+
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+    
+    <p>
+        <?php echo link_to_route('citas.create', 'Create cita'); ?>
+
+    </p>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

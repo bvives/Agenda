@@ -1,0 +1,31 @@
+ 
+<?php $__env->startSection('content'); ?>
+    <h2><?php echo e($cita->titol); ?></h2>
+    <table>
+        <tr>
+            <td>Data:</td>
+            <td><?php echo e($cita->dataCita); ?></td>
+        </tr>
+        <tr>
+            <td>Descripcio:</td>
+            <td><?php echo e($cita->descripcio); ?></td>
+        </tr>
+        <tr>
+            <td>Lloc:</td>
+            <td><?php echo e($cita->lloc); ?></td>
+        </tr>
+    </table>
+    <br/>
+    <?php if(!$cita->contactes->count()): ?>
+    <p> aquestaa cita no te contactes</p>
+    <?php else: ?>
+        <ul>
+        <?php foreach($cita->contactes as $contacte): ?>
+            <li><a href="<?php echo e(route('contactes.show', [$contacte->slug])); ?>"><?php echo e($contacte->nom); ?></a>
+        <?php endforeach; ?>
+        </ul>
+        <?php echo link_to_route('citas.addContactes', 'Edit', array($cita->slug), array('class' => 'btn btn-info')); ?>
+
+    <?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
