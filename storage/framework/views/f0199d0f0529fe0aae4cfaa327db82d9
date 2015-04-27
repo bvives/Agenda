@@ -1,0 +1,30 @@
+ 
+<?php $__env->startSection('content'); ?>
+    <h2>Contactes</h2>
+ 
+    <?php if( !$contactes->count() ): ?>
+        You have no poblacions
+    <?php else: ?>
+        <ul>
+            <?php foreach( $contactes as $contacte ): ?>
+                <li>
+                    <?php echo Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('contactes.destroy', $contacte->slug))); ?>
+
+                        <a href="<?php echo e(route('contactes.show', $contacte->slug)); ?>"><?php echo e($contacte->nom); ?></a>
+                        (
+                            <?php echo link_to_route('contactes.edit', 'Edit', array($contacte->slug), array('class' => 'btn btn-info')); ?>,
+                            <?php echo Form::submit('Delete', array('class' => 'btn btn-danger')); ?>
+
+                        )
+                    <?php echo Form::close(); ?>
+
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+    <p>
+        <?php echo link_to_route('contactes.create', 'Create Contacte'); ?>
+
+    </p>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

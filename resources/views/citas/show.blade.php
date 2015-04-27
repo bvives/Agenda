@@ -22,9 +22,11 @@
     @else
         <ul>
         @foreach($cita->contactes as $contacte)
-            <li><a href="{{ route('contactes.show', [$contacte->slug]) }}">{{ $contacte->nom }}</a>
+        <li><a href="{{ route('contactes.show', [$contacte->slug]) }}">{{ $contacte->nom }}</a></li>
         @endforeach
         </ul>
-        {!! link_to_route('citas.addContactes', 'Edit', array($cita->slug), array('class' => 'btn btn-info')) !!}
     @endif
+    {!! link_to_route('citas.addContactes', 'Afegir contacte', array($cita->slug), array('class' => 'btn btn-info')) !!}
+    {!! link_to_route('citas.removeContactes', 'Treure contactes', array($cita->slug), array('class' => 'btn btn-danger')) !!}
+    
 @endsection

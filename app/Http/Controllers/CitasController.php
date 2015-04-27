@@ -10,6 +10,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CitasController extends Controller {
+    
+    protected $rules = [
+		'titol' => ['required', 'min:3'],
+                'dataCita' => ['required','date'],
+                'descripcio' => ['required', 'min:3'],
+                'lloc' => ['required', 'min:3'],
+	];
 
 	/**
 	 * Display a listing of the resource.
@@ -33,7 +40,7 @@ class CitasController extends Controller {
 	}
         
         /**
-         * Show the for for attach Contacte to Cita
+         * Show the form for attach Contacte to Cita
          * 
          * @param Cita $cita
          * @return Response
@@ -41,17 +48,55 @@ class CitasController extends Controller {
 	public function addContactes(Cita $cita)
 	{
                 $contactes = Contacte::all();
-		return view('citas.addContacte', compact ('cita','contactes'));
+                return view('citas.addContactes', compact ('cita','contactes'));
 	}
+        
+        /**
+         * Sync the given Cita with the Contactes id.
+         * 
+         * @param Cita $cita
+         * @return Response
+         */
+        public function sync(Cita $cita){
+            $input = Input::all();
+            //var_dump($cita);
+            //var_dump($input);
+            $cita->contactes()->sync($input['contactes'], false);
+            return Redirect::route('citas.index')->with('message', 'Contactes afegits a '.$cita->titol);
+        }
+        
+        /**
+         * Show the form for detach Contacte from Cita
+         * 
+         * @param Cita $cita
+         * @return type
+         */
+        public function removeContactes(Cita $cita)
+	{
+                $contactes = $cita->contactes;
+                return view('citas.removeContactes', compact ('cita','contactes'));
+	}
+        
+        /**
+         * Sync the given Cita with the Contactes id.
+         * 
+         * @param Cita $cita
+         * @return Response
+         */
+        public function detach(Cita $cita){
+            $input = Input::all();
+            $cita->contactes()->detach($input['contactes']);
+            return Redirect::route('citas.index')->with('message', 'Contactes trets de '.$cita->titol);
+        }
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//$this->validate($request, $this->rules);
+		$this->validate($request, $this->rules);
         
                 $input = Input::all();
                 $input['slug'] = str_replace(" ", "-", (strtolower($input['titol'])));
@@ -87,9 +132,9 @@ class CitasController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Cita $cita)
+	public function update(Cita $cita, Request $request)
 	{
-		//$this->validate($request, $this->rules);
+		$this->validate($request, $this->rules);
         
                 $input = array_except(Input::all(), '_method');
                 $input['slug'] = str_replace(" ", "-", (strtolower($input['titol'])));

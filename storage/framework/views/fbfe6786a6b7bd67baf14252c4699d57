@@ -1,0 +1,18 @@
+<div class="form-group">
+    <?php echo Form::label('Contactes', 'Contactes:'); ?>
+
+    <br />
+    <?php $count = 1; ?>
+    <?php foreach($contactes as $contacte): ?>
+    <?php echo Form::checkbox('contactes[]', $contacte->id); ?><?php echo e($contacte->nom); ?>
+
+        <?php if($count % 3 == 0): ?>
+        <br />
+        <?php endif; ?>
+    <?php $count++; ?>
+    <?php endforeach; ?>
+</div>
+<div class="form-group">
+    <?php echo Form::submit($submit_text, ['class'=>'btn primary']); ?>
+
+</div>

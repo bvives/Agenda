@@ -1,0 +1,25 @@
+ 
+<?php $__env->startSection('content'); ?>
+    <h2><?php echo e($contacte->nom); ?></h2>
+    <table>
+        <tr>
+            <td>Email:</td>
+            <td><?php echo e($contacte->email); ?></td>
+        </tr>
+        <tr>
+            <td>Telefon:</td>
+            <td><?php echo e($contacte->tlf); ?></td>
+        </tr>
+    </table>
+    <br/>
+    <?php if(!$contacte->citas->count()): ?>
+    <p> aquest contacte no te citas</p>
+    <?php else: ?>
+        <ul>
+        <?php foreach($contacte->citas as $cita): ?>
+            <li><a href="<?php echo e(route('citas.show', [$cita->slug])); ?>"><?php echo e($cita->titol); ?></a>
+        <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -23,8 +23,6 @@ Route::controllers([
 Route::model('contactes', 'Contacte');
 Route::model('citas', 'Cita');
 
-Route::post('citas/{citas}/addContactes', 'CitasController@addContactes($cita');
-
 Route::bind('contactes', function($value, $route) {
 	return App\Contacte::whereSlug($value)->first();
 });
@@ -35,3 +33,7 @@ Route::bind('citas', function($value, $route) {
 Route::resource('citas', 'CitasController');
 Route::resource('contactes', 'ContactesController');
 
+Route::get('citas/{citas}/addContactes', ['as' => 'citas.addContactes', 'uses' => 'CitasController@addContactes']);
+Route::post('citas/{citas}sync', ['as' => 'citas.sync', 'uses' => 'CitasController@sync']);
+Route::get('citas/{citas}/removeContactes', ['as' => 'citas.removeContactes', 'uses' => 'CitasController@removeContactes']);
+Route::post('citas/{citas}/detach', ['as' => 'citas.detach', 'uses' => 'CitasController@detach']);

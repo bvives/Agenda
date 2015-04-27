@@ -21,11 +21,14 @@
     <?php else: ?>
         <ul>
         <?php foreach($cita->contactes as $contacte): ?>
-            <li><a href="<?php echo e(route('contactes.show', [$contacte->slug])); ?>"><?php echo e($contacte->nom); ?></a>
+        <li><a href="<?php echo e(route('contactes.show', [$contacte->slug])); ?>"><?php echo e($contacte->nom); ?></a></li>
         <?php endforeach; ?>
         </ul>
-        <?php echo link_to_route('citas.addContactes', 'Edit', array($cita->slug), array('class' => 'btn btn-info')); ?>
-
     <?php endif; ?>
+    <?php echo link_to_route('citas.addContactes', 'Afegir contacte', array($cita->slug), array('class' => 'btn btn-info')); ?>
+
+    <?php echo link_to_route('citas.removeContactes', 'Treure contactes', array($cita->slug), array('class' => 'btn btn-danger')); ?>
+
+    
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

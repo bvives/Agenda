@@ -41,6 +41,7 @@ class CreateContactesTable extends Migration {
 	 */
 	public function down()
 	{
+                Schema::drop('cita_contacte');
 		Schema::drop('contactes');
 	}
 

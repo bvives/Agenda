@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class ContactesController extends Controller {
 
+        protected $rules = [
+		'nom' => ['required', 'min:3'],
+                'email' => ['required', 'min:3'],
+                'tlf' => ['required', 'min:3'],
+	];
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -37,9 +42,9 @@ class ContactesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//$this->validate($request, $this->rules);
+		$this->validate($request, $this->rules);
         
                 $input = Input::all();
                 $input['slug'] = str_replace(" ", "-", (strtolower($input['nom'])));
@@ -75,9 +80,9 @@ class ContactesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Contacte $contacte)
+	public function update(Contacte $contacte, Request $request)
 	{
-		//$this->validate($request, $this->rules);
+		$this->validate($request, $this->rules);
         
                 $input = array_except(Input::all(), '_method');
                 $input['slug'] = str_replace(" ", "-", (strtolower($input['nom'])));

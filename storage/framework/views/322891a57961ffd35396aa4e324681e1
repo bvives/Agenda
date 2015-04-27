@@ -1,0 +1,9 @@
+<?php $__env->startSection('content'); ?>
+    <h2>Treure contactes de <?php echo e($cita->titol); ?></h2>
+<?php echo Form::open(['route' => ['citas.detach', $cita->slug]]); ?>
+
+        <?php echo $__env->make('citas/partials/_contactesForm', ['submit_text' => 'Treure contactes de cita'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
