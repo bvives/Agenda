@@ -34,8 +34,22 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="<?php echo e(url('/')); ?>">Home</a></li>
-                                        <li><a href="<?php echo e(url('citas')); ?>">Citas</a></li>
-                                        <li><a href="<?php echo e(url('contactes')); ?>">Contactes</a></li>
+                                        <li><a href="<?php echo e(url('citas')); ?>"><?php echo e(Lang::get('messages.menuCitas')); ?></a></li>
+                                        <li><a href="<?php echo e(url('contactes')); ?>"><?php echo e(Lang::get('messages.menuContactes')); ?></a></li>
+                                    
+                                            <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo e(Config::get('languages')[App::getLocale()]); ?> <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        <?php foreach(Config::get('languages') as $lang => $language): ?>
+            <?php if($lang != App::getLocale()): ?>
+                <li>
+                    <?php echo link_to_route('lang.switch', $language, $lang); ?>
+
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

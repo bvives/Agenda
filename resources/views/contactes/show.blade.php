@@ -2,13 +2,14 @@
  
 @section('content')
     <h2>{{$contacte->nom}}</h2>
+    {{Session::get('locale')}}
     <table>
         <tr>
             <td>Email:</td>
             <td>{{$contacte->email}}</td>
         </tr>
         <tr>
-            <td>Telefon:</td>
+            <td>{{Lang::get('messages.contactesTelf')}}:</td>
             <td>{{$contacte->tlf}}</td>
         </tr>
     </table>
@@ -18,7 +19,7 @@
     @else
         <ul>
         @foreach($contacte->citas as $cita)
-            <li><a href="{{ route('citas.show', [$cita->slug]) }}">{{ $cita->titol }}</a>
+        <li><a href="{{ route('citas.show', [$cita->slug]) }}">{{ $cita->titol }}</a></li>
         @endforeach
         </ul>
     @endif

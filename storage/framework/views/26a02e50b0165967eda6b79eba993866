@@ -1,13 +1,15 @@
  
 <?php $__env->startSection('content'); ?>
     <h2><?php echo e($contacte->nom); ?></h2>
+    <?php echo e(Session::get('locale')); ?>
+
     <table>
         <tr>
             <td>Email:</td>
             <td><?php echo e($contacte->email); ?></td>
         </tr>
         <tr>
-            <td>Telefon:</td>
+            <td><?php echo e(Lang::get('messages.contactesTelf')); ?>:</td>
             <td><?php echo e($contacte->tlf); ?></td>
         </tr>
     </table>
@@ -17,7 +19,7 @@
     <?php else: ?>
         <ul>
         <?php foreach($contacte->citas as $cita): ?>
-            <li><a href="<?php echo e(route('citas.show', [$cita->slug])); ?>"><?php echo e($cita->titol); ?></a>
+        <li><a href="<?php echo e(route('citas.show', [$cita->slug])); ?>"><?php echo e($cita->titol); ?></a></li>
         <?php endforeach; ?>
         </ul>
     <?php endif; ?>

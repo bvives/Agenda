@@ -1,7 +1,10 @@
  
 <?php $__env->startSection('content'); ?>
-    <h2>Contactes</h2>
- 
+    <h2><?php echo e(Lang::get('messages.titleContactes')); ?></h2>
+    <?php echo e(Session::get('locale')); ?>
+
+    <?php echo e(App::getLocale()); ?>
+
     <?php if( !$contactes->count() ): ?>
         You have no poblacions
     <?php else: ?>
@@ -12,8 +15,8 @@
 
                         <a href="<?php echo e(route('contactes.show', $contacte->slug)); ?>"><?php echo e($contacte->nom); ?></a>
                         (
-                            <?php echo link_to_route('contactes.edit', 'Edit', array($contacte->slug), array('class' => 'btn btn-info')); ?>,
-                            <?php echo Form::submit('Delete', array('class' => 'btn btn-danger')); ?>
+                            <?php echo link_to_route('contactes.edit', Lang::get('messages.botoEdit'), array($contacte->slug), array('class' => 'btn btn-info')); ?>,
+                            <?php echo Form::submit(Lang::get('messages.botoDelete'), array('class' => 'btn btn-danger')); ?>
 
                         )
                     <?php echo Form::close(); ?>
@@ -23,7 +26,7 @@
         </ul>
     <?php endif; ?>
     <p>
-        <?php echo link_to_route('contactes.create', 'Create Contacte'); ?>
+        <?php echo link_to_route('contactes.create', Lang::get('messages.createContacte')); ?>
 
     </p>
 <?php $__env->stopSection(); ?>

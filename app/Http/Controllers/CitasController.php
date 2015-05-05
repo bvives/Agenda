@@ -59,8 +59,6 @@ class CitasController extends Controller {
          */
         public function sync(Cita $cita){
             $input = Input::all();
-            //var_dump($cita);
-            //var_dump($input);
             $cita->contactes()->sync($input['contactes'], false);
             return Redirect::route('citas.index')->with('message', 'Contactes afegits a '.$cita->titol);
         }
@@ -153,6 +151,17 @@ class CitasController extends Controller {
 		$cita->delete();
                 return Redirect::route('citas.index')->with('message', 'cita deleted.');
 	}
+        
+        /**
+         * 
+         * @param string $lang
+         * @return type
+         */
+        public function locales($lang) {
+            App::setLocale($lang);
+            $citas = Cita::all();
+                return view('citas.index', compact('citas'));
+        }
         /**
          * 
          * 

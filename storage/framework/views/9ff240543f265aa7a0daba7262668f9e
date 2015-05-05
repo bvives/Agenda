@@ -3,15 +3,15 @@
     <h2><?php echo e($cita->titol); ?></h2>
     <table>
         <tr>
-            <td>Data:</td>
+            <td><?php echo e(Lang::get('messages.citaData')); ?>:</td>
             <td><?php echo e($cita->dataCita); ?></td>
         </tr>
         <tr>
-            <td>Descripcio:</td>
+            <td><?php echo e(Lang::get('messages.citaDescripcio')); ?>:</td>
             <td><?php echo e($cita->descripcio); ?></td>
         </tr>
         <tr>
-            <td>Lloc:</td>
+            <td><?php echo e(Lang::get('messages.citaLloc')); ?>:</td>
             <td><?php echo e($cita->lloc); ?></td>
         </tr>
     </table>

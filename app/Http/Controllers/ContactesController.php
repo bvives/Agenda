@@ -6,6 +6,7 @@ use App\Cita;
 use App\Contacte;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App;
 
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class ContactesController extends Controller {
                 'email' => ['required', 'min:3'],
                 'tlf' => ['required', 'min:3'],
 	];
+        
+        
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -24,6 +27,7 @@ class ContactesController extends Controller {
 	public function index()
 	{
 		$contactes = Contacte::all();
+                //App::setLocale(\Session::get('locale'));
                 return view('contactes.index', compact('contactes'));
 	}
 

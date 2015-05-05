@@ -12,8 +12,8 @@
 
                         <a href="<?php echo e(route('citas.show', $cita->slug)); ?>"><?php echo e($cita->titol); ?></a>
                          (
-                            <?php echo link_to_route('citas.edit', 'Edit', array($cita->slug), array('class' => 'btn btn-info')); ?>,
-                            <?php echo Form::submit('Delete', array('class' => 'btn btn-danger')); ?>
+                            <?php echo link_to_route('citas.edit', Lang::get('messages.botoEdit'), array($cita->slug), array('class' => 'btn btn-info')); ?>,
+                            <?php echo Form::submit(Lang::get('messages.botoDelete'), array('class' => 'btn btn-danger')); ?>
 
                         )
                     <?php echo Form::close(); ?>
@@ -24,7 +24,7 @@
     <?php endif; ?>
     
     <p>
-        <?php echo link_to_route('citas.create', 'Create cita'); ?>
+        <?php echo link_to_route('citas.create', Lang::get('messages.createCita')); ?>
 
     </p>
 <?php $__env->stopSection(); ?>

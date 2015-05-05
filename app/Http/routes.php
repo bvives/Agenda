@@ -11,6 +11,12 @@
 |
 */
 
+//if(!Session::has('locale'))
+//    {
+//       Session::put('locale', Config::get('app.locale'));
+//    }
+////App::setLocale(Session::get('locale'));
+
 Route::get('/', 'CitasController@index');
 
 Route::get('home', 'HomeController@index');
@@ -37,3 +43,32 @@ Route::get('citas/{citas}/addContactes', ['as' => 'citas.addContactes', 'uses' =
 Route::post('citas/{citas}sync', ['as' => 'citas.sync', 'uses' => 'CitasController@sync']);
 Route::get('citas/{citas}/removeContactes', ['as' => 'citas.removeContactes', 'uses' => 'CitasController@removeContactes']);
 Route::post('citas/{citas}/detach', ['as' => 'citas.detach', 'uses' => 'CitasController@detach']);
+//Route::get('es' ,['as' => 'lang.es',function()
+//{
+//    if(!Session::has('locale'))
+//    {
+//       Session::put('locale', \Config::get('app.locale'));
+//    }
+//   Session::set('locale', 'es');
+//   App::setLocale(Session::get('locale'));
+//   //return 'fuu';
+//    return Redirect::route('contactes.index');
+//}]);
+//Route::get('ca' ,['as' => 'lang.ca',function()
+//{
+//    if(!Session::has('locale'))
+//    {
+//       Session::put('locale', Config::get('app.locale'));
+//    }
+//    Session::set('locale', 'ca');
+//    App::setLocale(Session::get('locale'));
+//    
+//    
+//    return Redirect::route('contactes.index');
+//}]);
+//Route::get('/ca', ['as' => 'lang.ca',function()
+//{
+//    App::setLocale('ca');
+//}]);
+//Route::get('es', ['as' => 'citas.lang', 'uses' => 'CitasController@locales']);
+Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);

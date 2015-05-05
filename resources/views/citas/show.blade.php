@@ -4,15 +4,15 @@
     <h2>{{$cita->titol}}</h2>
     <table>
         <tr>
-            <td>Data:</td>
+            <td>{{Lang::get('messages.citaData')}}:</td>
             <td>{{$cita->dataCita}}</td>
         </tr>
         <tr>
-            <td>Descripcio:</td>
+            <td>{{Lang::get('messages.citaDescripcio')}}:</td>
             <td>{{$cita->descripcio}}</td>
         </tr>
         <tr>
-            <td>Lloc:</td>
+            <td>{{Lang::get('messages.citaLloc')}}:</td>
             <td>{{$cita->lloc}}</td>
         </tr>
     </table>

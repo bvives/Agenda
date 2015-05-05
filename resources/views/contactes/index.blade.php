@@ -1,8 +1,9 @@
 @extends('app')
  
 @section('content')
-    <h2>Contactes</h2>
- 
+    <h2>{{Lang::get('messages.titleContactes')}}</h2>
+    {{Session::get('locale')}}
+    {{App::getLocale()}}
     @if ( !$contactes->count() )
         You have no poblacions
     @else
@@ -12,8 +13,8 @@
                     {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('contactes.destroy', $contacte->slug))) !!}
                         <a href="{{ route('contactes.show', $contacte->slug) }}">{{ $contacte->nom }}</a>
                         (
-                            {!! link_to_route('contactes.edit', 'Edit', array($contacte->slug), array('class' => 'btn btn-info')) !!},
-                            {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+                            {!! link_to_route('contactes.edit', Lang::get('messages.botoEdit'), array($contacte->slug), array('class' => 'btn btn-info')) !!},
+                            {!! Form::submit(Lang::get('messages.botoDelete'), array('class' => 'btn btn-danger')) !!}
                         )
                     {!! Form::close() !!}
                 </li>
@@ -21,6 +22,6 @@
         </ul>
     @endif
     <p>
-        {!! link_to_route('contactes.create', 'Create Contacte') !!}
+        {!! link_to_route('contactes.create', Lang::get('messages.createContacte')) !!}
     </p>
 @endsection

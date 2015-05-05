@@ -12,8 +12,8 @@
                     {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('citas.destroy', $cita->slug))) !!}
                         <a href="{{ route('citas.show', $cita->slug) }}">{{ $cita->titol }}</a>
                          (
-                            {!! link_to_route('citas.edit', 'Edit', array($cita->slug), array('class' => 'btn btn-info')) !!},
-                            {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+                            {!! link_to_route('citas.edit', Lang::get('messages.botoEdit'), array($cita->slug), array('class' => 'btn btn-info')) !!},
+                            {!! Form::submit(Lang::get('messages.botoDelete'), array('class' => 'btn btn-danger')) !!}
                         )
                     {!! Form::close() !!}
                 </li>
@@ -22,6 +22,6 @@
     @endif
     
     <p>
-        {!! link_to_route('citas.create', 'Create cita') !!}
+        {!! link_to_route('citas.create', Lang::get('messages.createCita')) !!}
     </p>
 @endsection
