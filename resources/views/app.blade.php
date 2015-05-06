@@ -37,7 +37,11 @@
                                         <li><a href="{{ url('citas') }}">{{Lang::get('messages.menuCitas')}}</a></li>
                                         <li><a href="{{ url('contactes') }}">{{Lang::get('messages.menuContactes')}}</a></li>
                                     
-                                            <li class="dropdown">
+                                            
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Config::get('languages')[App::getLocale()] }} <b class="caret"></b></a>
     <ul class="dropdown-menu">
         @foreach (Config::get('languages') as $lang => $language)
@@ -49,9 +53,6 @@
         @endforeach
     </ul>
 </li>
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())
 						<li><a href="{{ url('/auth/login') }}">Login</a></li>
 						<li><a href="{{ url('/auth/register') }}">Register</a></li>

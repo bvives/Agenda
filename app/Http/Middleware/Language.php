@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Session;
 class Language implements Middleware {
     public function handle($request, Closure $next)
     {
-        var_dump(Session::get('applocale'));
+        //var_dump(Session::get('applocale'));
         if (Session::has('applocale') AND array_key_exists(Session::get('applocale'), Config::get('languages'))) {
             App::setLocale(Session::get('applocale'));
         }

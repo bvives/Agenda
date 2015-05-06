@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'ca' => 'Catala',
-    'es' => 'Espanol',
+    'ca' => 'Català',
+    'es' => 'Español',
 ];

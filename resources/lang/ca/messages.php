@@ -9,7 +9,7 @@ return [
     'createCita' => 'Crear cita',
     'createContacte' => 'Crear contacte',
     'citaData' => 'Data',
-    'citaDescripcio' => 'Descripci&oacute;',
+    'citaDescripcio' => 'Descripció',
     'citaLloc' => 'Lloc',    
     'botoEdit' => 'Editar',
     'botoDelete' => 'Borrar',
